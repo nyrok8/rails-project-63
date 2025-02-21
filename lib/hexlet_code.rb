@@ -23,7 +23,7 @@ module HexletCode
 
   def self.form_render(form_attrs, tags_attrs, submit_attrs)
     Slim::Engine.set_options pretty: true, sort_attrs: false
-    Slim::Template.new('lib/template.slim').render(
+    Slim::Template.new(File.join(__dir__, 'template.slim')).render(
       Object.new,
       form_attrs: form_attrs,
       tags_attrs: tags_attrs,
