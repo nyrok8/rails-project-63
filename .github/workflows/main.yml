@@ -3,7 +3,7 @@ name: Ruby
 on:
   push:
     branches:
-      - master
+      - main
 
   pull_request:
 
@@ -30,3 +30,6 @@ jobs:
 
       - name: Run Rubocop
         run: make lint
+      
+      - name: Run Test
+        run: make test

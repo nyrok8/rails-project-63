@@ -24,7 +24,7 @@ class TestHexletCode < Minitest::Test
     expected = <<~HTML.chomp
       <form action="#" method="post">
         <label for="name">Name</label>
-        <input name="name" type="text" value="rob" class="user-input" />
+        <input name="name" type="text" value="rob" class="user-input">
       </form>
     HTML
 
@@ -61,7 +61,7 @@ class TestHexletCode < Minitest::Test
   def test_submit
     expected = <<~HTML.chomp
       <form action="#" method="post">
-        <input type="submit" value="Wow" />
+        <input type="submit" value="Wow">
       </form>
     HTML
 
