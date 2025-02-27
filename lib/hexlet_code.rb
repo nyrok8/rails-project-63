@@ -2,6 +2,7 @@
 
 require_relative 'hexlet_code/version'
 
+# Основной модуль
 module HexletCode
   autoload(:Html, 'hexlet_code/html')
   autoload(:Tag, 'hexlet_code/tag')
@@ -18,6 +19,7 @@ module HexletCode
     Html.render(Tag.build('form', form_attributes) { form_builder.fields.join })
   end
 
+  # Создание внутренней части формы
   class FormBuilder
     attr_reader :fields
 

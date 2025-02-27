@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
+  # Красивый вывод формы
   class Html
     def self.render(form)
       form_with_newlines = form.gsub(/>(?=<)/, ">\n")
