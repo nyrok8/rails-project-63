@@ -2,7 +2,7 @@
 
 require_relative 'hexlet_code/version'
 
-module HexletCode # rubocop:disable Style/Documentation
+module HexletCode
   autoload(:Form, 'hexlet_code/form')
   autoload(:Html, 'hexlet_code/html')
 

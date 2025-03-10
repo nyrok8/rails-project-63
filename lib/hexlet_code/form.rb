@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
-  class Form # rubocop:disable Style/Documentation
+  class Form
     attr_reader :state
 
     def initialize(instance)

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module HexletCode # rubocop:disable Style/Documentation
+module HexletCode
   autoload(:Tag, 'hexlet_code/tag')
 
-  class Html # rubocop:disable Style/Documentation
+  class Html
     def self.render(state)
       form = state.shift
       form[:content] = state.map do |input|
