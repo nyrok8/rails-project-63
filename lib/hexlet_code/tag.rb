@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
 module HexletCode
-  # Создание тега
-  class Tag
-    def self.build(name, attributes = {})
-      attrs = attributes.map { |key, value| "#{key}=\"#{value}\"" }.join(' ')
-      if block_given?
-        "<#{name} #{attrs}>#{yield}</#{name}>"
-      else
-        "<#{name} #{attrs}>"
-      end
+  class Tag # rubocop:disable Style/Documentation
+    def self.build(name, attributes = {}, content = nil)
+      attrs = attributes.map { |key, value| " #{key}=\"#{value}\"" }.join
+      content ? "<#{name}#{attrs}>#{content}</#{name}>" : "<#{name}#{attrs}>"
     end
   end
 end

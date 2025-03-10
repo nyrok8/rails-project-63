@@ -1,19 +1,15 @@
 # frozen_string_literal: true
 
-module HexletCode
-  # Красивый вывод формы
-  class Html
-    def self.render(form)
-      form_with_newlines = form.gsub(/>(?=<)/, ">\n")
-      lines = form_with_newlines.split("\n")
-      rendered_lines = lines.map.with_index do |line, index|
-        if index.zero? || index == lines.size - 1
-          line
-        else
-          "  #{line}"
-        end
-      end
-      rendered_lines.join("\n")
+module HexletCode # rubocop:disable Style/Documentation
+  autoload(:Tag, 'hexlet_code/tag')
+
+  class Html # rubocop:disable Style/Documentation
+    def self.render(state)
+      form = state.shift
+      form[:content] = state.map do |input|
+        Tag.build(input[:type].to_s, input[:attributes], input[:content])
+      end.join
+      Tag.build(form[:type].to_s, form[:attributes], form[:content])
     end
   end
 end

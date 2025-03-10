@@ -10,24 +10,14 @@ class TestHexletCode < Minitest::Test
   end
 
   def test_empty_form
-    expected = <<~HTML.chomp
-      <form action="/profile" method="post" class="hexlet-form">
-      </form>
-    HTML
-
+    expected = File.read(File.join(__dir__, 'fixtures/empty_form.html'))
     result = HexletCode.form_for @user, url: '/profile', class: 'hexlet-form'
 
     assert_equal expected, result
   end
 
   def test_input
-    expected = <<~HTML.chomp
-      <form action="#" method="post">
-        <label for="name">Name</label>
-        <input name="name" type="text" value="rob" class="user-input">
-      </form>
-    HTML
-
+    expected = File.read(File.join(__dir__, 'fixtures/input.html'))
     result = HexletCode.form_for @user do |f|
       f.input :name, class: 'user-input'
     end
@@ -36,15 +26,19 @@ class TestHexletCode < Minitest::Test
   end
 
   def test_textarea
-    expected = <<~HTML.chomp
-      <form action="#" method="post">
-        <label for="job">Job</label>
-        <textarea name="job" cols="50" rows="50">hexlet</textarea>
-      </form>
-    HTML
+    expected = File.read(File.join(__dir__, 'fixtures/textarea.html'))
 
     result = HexletCode.form_for @user do |f|
       f.input :job, as: :text, rows: 50, cols: 50
+    end
+
+    assert_equal expected, result
+  end
+
+  def test_submit
+    expected = File.read(File.join(__dir__, 'fixtures/submit.html'))
+    result = HexletCode.form_for @user do |f|
+      f.submit 'Wow'
     end
 
     assert_equal expected, result
@@ -56,19 +50,5 @@ class TestHexletCode < Minitest::Test
         f.input :age
       end
     end
-  end
-
-  def test_submit
-    expected = <<~HTML.chomp
-      <form action="#" method="post">
-        <input type="submit" value="Wow">
-      </form>
-    HTML
-
-    result = HexletCode.form_for @user do |f|
-      f.submit 'Wow'
-    end
-
-    assert_equal expected, result
   end
 end
