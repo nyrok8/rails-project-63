@@ -10,14 +10,14 @@ class TestHexletCode < Minitest::Test
   end
 
   def test_empty_form
-    expected = File.read(File.join(__dir__, 'fixtures/empty_form.html'))
+    expected = load_fixture('empty_form.html')
     result = HexletCode.form_for @user, url: '/profile', class: 'hexlet-form'
 
     assert_equal expected, result
   end
 
   def test_input
-    expected = File.read(File.join(__dir__, 'fixtures/input.html'))
+    expected = load_fixture('input.html')
     result = HexletCode.form_for @user do |f|
       f.input :name, class: 'user-input'
     end
@@ -26,8 +26,7 @@ class TestHexletCode < Minitest::Test
   end
 
   def test_textarea
-    expected = File.read(File.join(__dir__, 'fixtures/textarea.html'))
-
+    expected = load_fixture('textarea.html')
     result = HexletCode.form_for @user do |f|
       f.input :job, as: :text, rows: 50, cols: 50
     end
@@ -36,7 +35,7 @@ class TestHexletCode < Minitest::Test
   end
 
   def test_submit
-    expected = File.read(File.join(__dir__, 'fixtures/submit.html'))
+    expected = load_fixture('submit.html')
     result = HexletCode.form_for @user do |f|
       f.submit 'Wow'
     end

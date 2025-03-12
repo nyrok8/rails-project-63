@@ -10,19 +10,31 @@ module HexletCode
     end
 
     def input(name, attributes = {})
-      value = @instance.public_send(name)
-      @state << { type: :label, attributes: { for: name }, content: name.capitalize }
-      @state << case attributes.delete(:as)
-                when :text
-                  { type: :textarea, attributes: { name: name, cols: '20', rows: '40' }.merge(attributes),
-                    content: value }
-                else
-                  { type: :input, attributes: { name: name, type: 'text', value: value }.merge(attributes) }
-                end
+      @state << {
+        type: input_type(attributes.delete(:as)),
+        name: name,
+        value: @instance.public_send(name),
+        attributes: attributes
+      }
     end
 
     def submit(value = 'Save', attributes = {})
-      @state << { type: :input, attributes: { type: 'submit', value: value }.merge(attributes) }
+      @state << {
+        type: :submit,
+        attributes: attributes,
+        value: value
+      }
+    end
+
+    private
+
+    def input_type(type)
+      case type
+      when :text
+        :textarea
+      else
+        :input
+      end
     end
   end
 end

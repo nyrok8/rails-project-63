@@ -1,3 +1,5 @@
+.PHONY: install lint lint-fix test
+
 install:
 	bundle install
 

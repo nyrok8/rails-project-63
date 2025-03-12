@@ -8,8 +8,7 @@ module HexletCode
 
   def self.form_for(instance, attributes = {})
     form = Form.new(instance)
-    form_attributes = { action: attributes.fetch(:url, '#'), method: 'post' }.merge(attributes.except(:url))
-    form.state << { type: :form, attributes: form_attributes }
+    form.state << { type: :form, attributes: attributes }
 
     yield(form) if block_given?
 
